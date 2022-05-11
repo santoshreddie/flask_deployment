@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Retrun Load Price Prediction</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<style type="text/css">
+*{margin:0;padding:0;box-sizing:border-box}body,html{height:100%;font-family:Poppins-Regular,sans-serif}a{font-family:Poppins-Regular;font-size:14px;line-height:1.7;color:#666;margin:0;transition:all .4s;-webkit-transition:all .4s;-o-transition:all .4s;-moz-transition:all .4s}a:focus{outline:0!important}a:hover{text-decoration:none}h1,h2,h3,h4,h5,h6{margin:0}input{outline:0;border:none}input:focus::-webkit-input-placeholder{color:transparent}input:focus:-moz-placeholder{color:transparent}input:focus::-moz-placeholder{color:transparent}input:focus:-ms-input-placeholder{color:transparent}input::-webkit-input-placeholder{color:#adadad}input:-moz-placeholder{color:#adadad}input::-moz-placeholder{color:#adadad}input:-ms-input-placeholder{color:#adadad}button{outline:0!important;border:none;background:0 0}button:hover{cursor:pointer}.container{max-width:1200px}.container-contact100{width:100%;min-height:100vh;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;padding:15px;background:#a64bf4;background:-webkit-linear-gradient(45deg,#00dbde,#fc00ff);background:-o-linear-gradient(45deg,#00dbde,#fc00ff);background:-moz-linear-gradient(45deg,#00dbde,#fc00ff);background:linear-gradient(45deg,#00dbde,#fc00ff)}.wrap-contact100{width:500px;background:#fff;border-radius:10px;overflow:hidden;padding:42px 55px 45px 55px}.contact100-form{width:100%}.contact100-form-title{display:block;font-family:Poppins-Bold;font-size:39px;color:#333;line-height:1.2;text-align:center;padding-bottom:10px}.wrap-input100{width:100%;position:relative;border-bottom:2px solid #d9d9d9;padding-bottom:10px;margin-bottom:15px}.input100{display:block;width:100%;background:0 0;font-family:Poppins-Medium;font-size:18px;color:#333;line-height:1.2;padding:0 5px}.focus-input100{position:absolute;display:block;width:100%;height:100%;top:0;left:0;pointer-events:none}.focus-input100::before{content:"";display:block;position:absolute;bottom:-2px;left:0;width:0;height:2px;-webkit-transition:all .4s;-o-transition:all .4s;-moz-transition:all .4s;transition:all .4s;background:#7f7f7f}input.input100{height:40px}.input100:focus+.focus-input100::before{width:100%}.has-val.input100+.focus-input100::before{width:100%}.container-contact100-form-btn{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;flex-wrap:wrap;justify-content:center;padding-top:13px}.wrap-contact100-form-btn{width:100%;display:block;position:relative;z-index:1;border-radius:25px;overflow:hidden;margin:0 auto}.contact100-form-bgbtn{position:absolute;z-index:-1;width:300%;height:100%;background:#a64bf4;background:-webkit-linear-gradient(left,#00dbde,#fc00ff,#00dbde,#fc00ff);background:-o-linear-gradient(left,#00dbde,#fc00ff,#00dbde,#fc00ff);background:-moz-linear-gradient(left,#00dbde,#fc00ff,#00dbde,#fc00ff);background:linear-gradient(left,#00dbde,#fc00ff,#00dbde,#fc00ff);top:0;left:-100%;-webkit-transition:all .4s;-o-transition:all .4s;-moz-transition:all .4s;transition:all .4s}.contact100-form-btn{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;justify-content:center;align-items:center;padding:0 20px;width:100%;height:50px;font-family:Poppins-Medium;font-size:16px;color:#fff;line-height:1.2}.wrap-contact100-form-btn:hover .contact100-form-bgbtn{left:0}.contact100-form-btn i{-webkit-transition:all .4s;-o-transition:all .4s;-moz-transition:all .4s;transition:all .4s}.contact100-form-btn:hover i{-webkit-transform:translateX(10px);-moz-transform:translateX(10px);-ms-transform:translateX(10px);-o-transform:translateX(10px);transform:translateX(10px)}@media (max-width:576px){.wrap-contact100{padding:72px 15px 65px 15px}}.wrap-contact100{width:800px;background:#fff;border-radius:10px;overflow:hidden;padding:42px 55px 45px 55px}.contact100-form-title{font-size:26px}
+</style>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" action="/predict" method="POST" >
+				<span class="contact100-form-title" style="font-size:32px"> Return Load Price Prediction</span>
+				<span class="contact100-form-title" id="output" style="color: #ff0000;" >&nbsp;</span>
+				<div class="wrap-input100 " >
+					<span class="label-input100">Product</span>
+					<select  class="input100" id="product" name="product" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+							<option value="">select product</option>
+							<option value="0">Chemicals</option>
+							<option value="1">FMCG</option>
+							<option value="2">Petcoke</option>
+						</select>
+					<span class="focus-input100"></span>
+				</div><br>
+		
+				<div class="wrap-input100" style="border-bottom: 0px;" >
+					<span class="label-input100">From</span>
+						<select  class="input100" id="fro" name="fro" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+							<option value="">from</option>
+							<option value="0">Ankleshwar</option>
+							<option value="1">Jamnagar</option>
+							<option value="2">Surat</option>
+							<option value="3">jamnagar</option>
+							<option value="4">sanand</option>
+							<option value="5">Ankleshwar</option>
+		
+						</select>
+					<span class="focus-input100"></span>
+				</div><br>
+		
+				<div class="wrap-input100" style="border-bottom: 0px;" >
+					<span class="label-input100">To</span>
+						<select class="input100"  id="to" name="to" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+							<option value="">to</option>
+							<option value="0">Baddi</option>
+							<option value="1">Bengaluru</option>
+							<option value="2">Bindayaka</option>
+							<option value="3">DERABASSI</option>
+							<option value="4">LUDHIANA</option>
+							<option value="5">Ludhiana</option>
+							<option value="6">NALAGARH</option>
+							<option value="7">PALWAL</option>
+							<option value="8">ajmer</option>
+							<option value="9">akola</option>
+							<option value="10">alwar</option>
+							<option value="11">anand</option>
+							<option value="12">anantapur</option>
+							<option value="13`">aurangabad</option>
+							<option value="14">bahadurgarh</option>
+							<option value="15">bhiwandi</option>
+							<option value="16">bhopal</option>
+							<option value="17">chennai</option>
+							<option value="18">chittoor</option>
+							<option value="19">chittorgarh</option>
+							<option value="20">choryasi</option>
+							<option value="21">coimbatore</option>
+							<option value="22">dindigul</option>
+							<option value="23">dindori</option>
+							<option value="24">gannavaram</option>
+							<option value="25">ghaziabad</option>
+							<option value="26">guntur</option>
+							<option value="27">guwahati</option>
+							<option value="28">halol</option>
+							<option value="29">hosur</option>
+							<option value="30">hubali-dharwad</option>
+							<option value="31">hyderabad</option>
+							<option value="32">indore</option>
+							<option value="33">jaipur</option>
+							<option value="34">jalandhar</option>
+							<option value="35">jalgaon</option>
+							<option value="36">jodhpur</option>
+							<option value="37">kanpur</option>
+							<option value="38">karjan</option>
+							<option value="39">kharar</option>
+							<option value="40">kolhapur</option>
+							<option value="41">kota</option>
+							<option value="42">kotputli</option>
+							<option value="43">lucknow</option>
+							<option value="44">ludhiana</option>
+							<option value="45">mahabubnagar</option>
+							<option value="46">medak</option>
+							<option value="47">mundra</option>
+							<option value="48">new delhi</option>
+							<option value="49">nimbahera</option>
+							<option value="50">palsana</option>
+							<option value="51">patna</option>
+							<option value="52">puducherry</option>
+							<option value="53">raipur</option>
+							<option value="54">rajpura</option>
+							<option value="55">rohtak</option>
+							<option value="56">sangareddy</option>
+							<option value="57">sathyavedu</option>
+							<option value="58">siliguri</option>
+							<option value="59">solapur</option>
+							<option value="60">suryapet</option>
+							<option value="61">tenali</option>
+							<option value="62">thrissur</option>
+							<option value="63">tirupati</option>
+							<option value="64">tiruvallur</option>
+							<option value="65">udaipur</option>
+							<option value="66">vadodara</option>
+							<option value="67">varanasi</option>
+							<option value="68">vijayawada</option>
+							>
+						</select>
+					<span class="focus-input100"></span>
+				</div><br>
+		
+				<div class="wrap-input100 " >
+					<span class="label-input100">Quantity</span>
+					<input class="input100" type="text" id="quantity" name="quantity" placeholder="Quantity  ex: 35.125">
+					<span class="focus-input100"></span>
+				</div><br>
+		
+		
+				<div class="wrap-input100" style="border-bottom: 0px;" >
+					<span class="label-input100">Per_MT_Truck</span>
+						<select class="input100"  id="permt" name="permt" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+							<option value="">select</option>
+							<option value="0">per ton</option>
+							<option value="1">per truck</option>
+							
+						</select>
+					<span class="focus-input100"></span>
+				</div><br>
+		
+				<div class="wrap-input100" style="border-bottom: 0px;" >
+					<span class="label-input100">Return Commodity</span>
+						<select class="input100"  id="commo" name="commo" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+							<option value="">select commodity</option>
+							<option value="0">Alumina</option>
+							<option value="1">Animal Feed</option>
+							<option value="2">Bajra</option>
+							<option value="3">Block</option>
+							<option value="4">Carton Box</option>
+							<option value="5">Castor Seed</option>
+							<option value="6">Cement</option>
+							<option value="7">Coconut</option>
+							<option value="8">Coconut</option>
+							<option value="9">Coke Powder</option>
+							<option value="10">Container </option>
+							<option value="11">DOC</option>
+							<option value="12">Garlic</option>
+							<option value="13">Gitty</option>
+							<option value="14">Gypsum</option>
+							<option value="15">Iron</option>
+							<option value="16">Jaggery</option>
+							<option value="17">Jumbo Bags</option>
+							<option value="18">Maize</option>
+							<option value="19">Metal</option>
+							<option value="20">Nutrition</option>
+							<option value="21">Paper Roll</option>
+							<option value="22">Pipe</option>
+							<option value="23">Pipi dana</option>
+							<option value="24">Plastic Dana</option>
+							<option value="25">Plywood</option>
+							<option value="26">Plywood</option>
+							<option value="27">Powder</option>
+							<option value="28">Powder (Bags)</option>
+							<option value="29">Powders Bag</option>
+							<option value="30">Rice</option>
+							<option value="31">Rice Husk</option>
+							<option value="32">Salt</option>
+							<option value="33">Sand</option>
+							<option value="34">Steel Coil</option>
+							<option value="35">Sugar</option>
+							<option value="36">Textile</option>
+							<option value="37">Tower material</option>
+							<option value="38">Wheat Powder</option>
+							<option value="39">metals</option>
+							
+						</select>
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" id='submit' type="submit" value="Submit">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
