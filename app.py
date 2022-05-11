@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET", "POST"])
 def hello():
+    print("Request for index page received")
     return render_template('index2.html')
 
 @app.route('/predict', methods = ['POST'])
